@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Events & Ticketing | SEU Career Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body { background: #000000; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .container-box { max-width: 1100px; margin: 100px auto 50px auto; padding: 20px; }
+        .page-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(180deg, #fff 0%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-subtitle { color: #94a3b8; font-size: 0.95rem; margin-bottom: 30px; }
+
+        .events-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .event-card { background: rgba(18, 26, 41, 0.75); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 25px; backdrop-filter: blur(14px); transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .event-card:hover { border-color: #0066ff; box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2); }
+        
+        .event-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .event-meta { font-size: 0.88rem; color: #94a3b8; margin-bottom: 15px; display: flex; flex-direction: column; gap: 6px; }
+        .event-meta span i { color: #0066ff; width: 20px; }
+        .event-fee { font-size: 1.1rem; font-weight: 800; color: #10b981; margin-bottom: 20px; }
+        
+        .bkash-btn { background: #e2136e; color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .bkash-btn:hover { background: #c20f5c; box-shadow: 0 0 15px rgba(226, 19, 110, 0.4); }
+
+        /* bKash Payment Modal */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: #0d1322; border: 1px solid rgba(226, 19, 110, 0.5); padding: 30px; border-radius: 16px; width: 100%; max-width: 400px; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h3 { font-size: 1.1rem; color: #e2136e; font-weight: 800; }
+        .close-modal { background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.82rem; color: #94a3b8; margin-bottom: 5px; font-weight: 600; }
+        .form-group input { width: 100%; background: #0a0f19; border: 1px solid rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none; }
+        .modal-submit { width: 100%; background: #e2136e; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+        .modal-submit:hover { background: #c20f5c; }
+
+        @media (max-width: 768px) { .events-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container flex-nav">
+            <a href="index.html" class="logo-container">
+                <img src="../images/download.jpg" alt="SEU Logo" class="varsity-logo">
+                <div class="logo-text">
+                    <h2>SOUTHEAST <span>UNIVERSITY</span></h2>
+                    <small>Career Connect System</small>
+                </div>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="jobs.html">Find Jobs</a></li>
+                    <li><a href="alumni.html">Alumni</a></li>
+                    <li><a href="alumni-events.html" class="active">Alumni Events</a></li>
+                    <li><a href="post-job.html">Post Job</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-box">
+        <h1 class="page-title">SEU Alumni Reunion & Events</h1>
+        <p class="page-subtitle">Register for upcoming alumni get-togethers and networking dinners securely via bKash.</p>
+
+        <div class="events-grid">
+            
+            <!-- Event 1 -->
+            <div class="event-card">
+                <div>
+                    <h3>SEU CSE Annual Alumni Reunion 2026</h3>
+                    <div class="event-meta">
+                        <span><i class="fa-solid fa-calendar-days"></i> 25 December, 2026</span>
+                        <span><i class="fa-solid fa-location-dot"></i> SEU Permanent Campus, Tejgaon, Dhaka</span>
+                        <span><i class="fa-solid fa-user-tie"></i> Chief Guest: Honorable VC & Industry Leaders</span>
+                    </div>
+                    <div class="event-fee">Registration Fee: BDT 1,000</div>
+                </div>
+                <button class="bkash-btn" onclick="openBkashModal('SEU CSE Annual Alumni Reunion 2026', '1000')">
+                    <i class="fa-solid fa-wallet"></i> Pay with bKash
+                </button>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="event-card">
+                <div>
+                    <h3>Tech Leadership & Networking Dinner</h3>
+                    <div class="event-meta">
+                        <span><i class="fa-solid fa-calendar-days"></i> 15 January, 2027</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Pan Pacific Sonargaon, Dhaka</span>
+                        <span><i class="fa-solid fa-user-tie"></i> Exclusive for Tech Leads & Founders</span>
+                    </div>
+                    <div class="event-fee">Registration Fee: BDT 2,500</div>
+                </div>
+                <button class="bkash-btn" onclick="openBkashModal('Tech Leadership & Networking Dinner', '2500')">
+                    <i class="fa-solid fa-wallet"></i> Pay with bKash
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- bKash Modal -->
+    <div class="modal-overlay" id="bkashModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalEventTitle">bKash Payment Gateway</h3>
+                <button class="close-modal" onclick="closeBkashModal()">&times;</button>
+            </div>
+            <form onsubmit="handleBkashPayment(event)">
+                <div class="form-group">
+                    <label>Amount to Pay</label>
+                    <input type="text" id="modalAmount" readonly style="color: #10b981; font-weight: bold;">
+                </div>
+                <div class="form-group">
+                    <label>bKash Account Number</label>
+                    <input type="text" placeholder="01XXXXXXXXX" required pattern="01[0-9]{9}">
+                </div>
+                <div class="form-group">
+                    <label>bKash Verification Code (OTP)</label>
+                    <input type="text" placeholder="Enter 6-digit OTP (e.g. 123456)" required>
+                </div>
+                <button type="submit" class="modal-submit">Confirm Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openBkashModal(title, fee) {
+            document.getElementById('modalEventTitle').innerText = "bKash Pay: " + title;
+            document.getElementById('modalAmount').value = "BDT " + fee + " (Inclusive of VAT)";
+            document.getElementById('bkashModal').style.display = 'flex';
+        }
+
+        function closeBkashModal() {
+            document.getElementById('bkashModal').style.display = 'none';
+        }
+
+        function handleBkashPayment(e) {
+            e.preventDefault();
+            alert('Payment Successful! Your digital ticket with QR Code has been sent to your email and dashboard.');
+            closeBkashModal();
+        }
+    </script>
+</body>
+</html>

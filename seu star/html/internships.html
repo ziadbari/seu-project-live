@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Opportunities | SEU Career Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body { background: #000000; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .intern-container { max-width: 1100px; margin: 100px auto 50px auto; padding: 20px; }
+        .page-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(180deg, #fff 0%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-subtitle { color: #94a3b8; font-size: 0.95rem; margin-bottom: 0; }
+        
+        .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
+        .post-intern-btn { background: #10b981; color: #fff; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; transition: 0.2s; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); display: flex; align-items: center; gap: 8px; }
+        .post-intern-btn:hover { background: #059669; }
+
+        .intern-grid { display: flex; flex-direction: column; gap: 20px; }
+        .intern-card { background: rgba(18, 26, 41, 0.75); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 25px; backdrop-filter: blur(14px); transition: 0.3s; }
+        .intern-card:hover { border-color: #10b981; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2); }
+
+        /* Modal for Quick Post */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+        .modal-content { background: #0d1322; border: 1px solid rgba(16, 185, 129, 0.4); padding: 30px; border-radius: 16px; width: 100%; max-width: 550px; box-shadow: 0 20px 40px rgba(0,0,0,0.8); max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h3 { font-size: 1.2rem; color: #10b981; font-weight: 800; }
+        .close-modal { background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 6px; font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; background: #0a0f19; border: 1px solid rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+        .modal-submit { width: 100%; background: #10b981; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+        .modal-submit:hover { background: #059669; }
+
+        @media (max-width: 768px) { .header-flex { flex-direction: column; align-items: flex-start; } }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container flex-nav">
+            <a href="index.html" class="logo-container">
+                <img src="../images/download.jpg" alt="SEU Logo" class="varsity-logo">
+                <div class="logo-text">
+                    <h2>SOUTHEAST <span>UNIVERSITY</span></h2>
+                    <small>Career Connect System</small>
+                </div>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="jobs.html">Find Jobs</a></li>
+                    <li><a href="internships.html" class="active">Internships</a></li>
+                    <li><a href="alumni.html">Alumni</a></li>
+                    <li><a href="alumni-events.html">Alumni Events</a></li>
+                    <li><a href="student-dashboard.html">Dashboard</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="intern-container">
+        <div class="header-flex">
+            <div>
+                <h1 class="page-title">Explore Internships</h1>
+                <p class="page-subtitle">Gain real-world corporate experience through internship opportunities.</p>
+            </div>
+            <!-- Alumni Post Button triggering Modal -->
+            <button class="post-intern-btn" onclick="openInternModal()">
+                <i class="fa-solid fa-plus-circle"></i> Post Internship (Alumni)
+            </button>
+        </div>
+
+        <div class="intern-grid" id="internGrid">
+            
+            <!-- ডিফল্ট ইন্টার্নশিপ ১ -->
+            <div class="intern-card">
+                <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">Corporate Partner</span>
+                <h3 style="color: #fff; margin: 12px 0 6px 0; font-size: 1.3rem;">Software Engineering Intern</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 8px;"><i class="fa-solid fa-building"></i> Brain Station 23 &nbsp;|&nbsp; <i class="fa-solid fa-wallet"></i> Stipend: BDT 12,000 / month</p>
+                <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.5;">Looking for enthusiastic undergraduate students skilled in JavaScript, HTML/CSS, and basic backend concepts.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <small style="color: #94a3b8;">Deadline: 20 November, 2026</small>
+                    <a href="#" style="background: #10b981; color: #fff; padding: 8px 18px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: bold;">Apply Now</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Alumni Internship Post Modal -->
+    <div class="modal-overlay" id="internModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-briefcase"></i> Post an Internship</h3>
+                <button class="close-modal" onclick="closeInternModal()">&times;</button>
+            </div>
+            <form onsubmit="handleInternshipSubmit(event)">
+                <div class="form-group">
+                    <label>Internship Title</label>
+                    <input type="text" id="intTitle" placeholder="e.g. Frontend Developer Intern" required>
+                </div>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="intCompany" placeholder="e.g. bKash / Enosis Solutions" required>
+                </div>
+                <div class="form-group">
+                    <label>Stipend / Duration</label>
+                    <input type="text" id="intStipend" placeholder="e.g. BDT 10,000 / month (3 Months)" required>
+                </div>
+                <div class="form-group">
+                    <label>Application Deadline</label>
+                    <input type="date" id="intDeadline" required>
+                </div>
+                <div class="form-group">
+                    <label>Requirements & Description</label>
+                    <textarea id="intDesc" rows="3" placeholder="Mention required tech stack and responsibilities..." required></textarea>
+                </div>
+                <button type="submit" class="modal-submit">Publish Internship</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openInternModal() {
+            document.getElementById('internModal').style.display = 'flex';
+        }
+
+        function closeInternModal() {
+            document.getElementById('internModal').style.display = 'none';
+        }
+
+        function handleInternshipSubmit(e) {
+            e.preventDefault();
+            
+            const newIntern = {
+                title: document.getElementById('intTitle').value,
+                company: document.getElementById('intCompany').value,
+                stipend: document.getElementById('intStipend').value,
+                deadline: document.getElementById('intDeadline').value,
+                description: document.getElementById('intDesc').value
+            };
+
+            let customInternships = JSON.parse(localStorage.getItem('seu_custom_internships')) || [];
+            customInternships.push(newIntern);
+            localStorage.setItem('seu_custom_internships', JSON.stringify(customInternships));
+
+            alert('Internship successfully posted and is now live!');
+            closeInternModal();
+            location.reload(); // পেজ রিফ্রেশ করে নতুন ইন্টার্নশিপ লিস্টে দেখানো
+        }
+
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            const internGrid = document.getElementById('internGrid');
+            let customInternships = JSON.parse(localStorage.getItem('seu_custom_internships')) || [];
+            
+            if (customInternships.length > 0) {
+                customInternships.reverse().forEach(intern => {
+                    const internCard = document.createElement('div');
+                    internCard.className = 'intern-card';
+                    internCard.innerHTML = `
+                        <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;"><i class="fa-solid fa-user-graduate"></i> Alumni Posted</span>
+                        <h3 style="color: #fff; margin: 12px 0 6px 0; font-size: 1.3rem;">${intern.title}</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 8px;"><i class="fa-solid fa-building"></i> ${intern.company} &nbsp;|&nbsp; <i class="fa-solid fa-wallet"></i> Stipend: ${intern.stipend}</p>
+                        <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.5;">${intern.description}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                            <small style="color: #94a3b8;">Deadline: ${intern.deadline}</small>
+                            <a href="#" style="background: #10b981; color: #fff; padding: 8px 18px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: bold;">Apply Now</a>
+                        </div>
+                    `;
+                    internGrid.prepend(internCard);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
